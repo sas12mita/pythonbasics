@@ -1,0 +1,15 @@
+score=int(input("Enter score"))
+
+def assign_grade(score):
+    if score < 50:
+        print(f"The student scored {score} which is grade F")
+    elif score < 65:
+        print(f"The student scored {score} which is grade P")
+    elif score < 75:
+        print(f"The student scored {score} which is grade C")
+    elif score < 85:
+        print(f"The student scored {score} which is grade D")
+    else:
+        print(f"The student scored {score} which is grade HD")
+
+assign_grade(score)

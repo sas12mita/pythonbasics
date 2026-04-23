@@ -1,0 +1,85 @@
+begin
+Initialize empty list students=[]
+Initialize empty set student_ids
+
+loop START
+  print Student Management Systemd
+  print 1. Add student
+  print 2. View student
+  print 3. Search student
+  print 4. Delete student
+  print 5. Exit
+  ask user choice value from 1 to 5 to choose above operation
+
+  IF choice="1" THEN
+   Input name
+   Input s_id
+   Input mark
+   IF s_id exits in student_ids THEN
+   print student ID already exits
+   CONTINUE loop
+   ENDIF
+
+   IF marks <0 or mark>100 THEN
+   print invalid mark
+   END IF
+   Category Grade:
+   IF mark <50 THEN grade="F"
+   ELSE if mark< 65 Then garde="p"
+   ELSE if mark< 75 Then grade ="c"
+   ELSE if marks <85 Then garde="D"
+   Else grade= "100" 
+  End IF
+
+  add name,student_id,mark.grade to students list
+  add s_id to student_ids SET
+  print Student added successfully
+
+  IF choice = "2" THEN
+  if students list is empty THEN
+  print no student found
+  ELSE
+  loop student in students lits
+  print student details
+  end loop
+  END IF
+
+  ELSE IF choice ="3" THEN
+  Input student id for search
+  loop student in student_list
+  if student id matches THEN
+  disply student detail
+  break loop
+  END IF
+  END Loop
+  if student id  is not found in students list or s_iid SET
+  print no student record
+  END IF
+
+
+  IF choice ="4" THEN
+  Input student id for DELETE
+  loop student in student_list
+  if student id matches THEN
+  delete student form student_list 
+  delete s_id form student_ids set
+  print student delete successfully
+  break loop
+  END if 
+  END loop
+  if student id  is not found in students list or s_iid SET
+  print no student record
+  END IF
+
+  IF choice ="5" THEN
+  print exiting program  
+  break
+   
+  else 
+  print invalid choice
+END loop
+end
+
+
+
+   

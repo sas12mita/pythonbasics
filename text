@@ -1,0 +1,95 @@
+START
+
+CREATE empty list students
+CREATE empty set student_ids
+
+LOOP forever:
+
+    DISPLAY "Student Management System Menu"
+    DISPLAY "1. Add Student"
+    DISPLAY "2. View Students"
+    DISPLAY "3. Search Student"
+    DISPLAY "4. Delete Student"
+    DISPLAY "5. Exit"
+
+    INPUT choice
+
+    IF choice = "1" THEN
+        INPUT name
+        INPUT student_id
+        INPUT marks
+
+        IF student_id EXISTS in student_ids THEN
+            DISPLAY "Student ID already exists"
+            CONTINUE LOOP
+        ENDIF
+
+        IF marks < 0 OR marks > 100 THEN
+            DISPLAY "Invalid marks"
+            CONTINUE LOOP
+        ENDIF
+
+        DETERMINE grade:
+            IF marks < 50 THEN grade = "F"
+            ELSE IF marks < 65 THEN grade = "P"
+            ELSE IF marks < 75 THEN grade = "C"
+            ELSE IF marks < 85 THEN grade = "D"
+            ELSE grade = "HD"
+        ENDIF
+
+        ADD (name, student_id, marks, grade) TO students list
+        ADD student_id TO student_ids set
+
+        DISPLAY "Student added successfully"
+
+    ELSE IF choice = "2" THEN
+        IF students list is empty THEN
+            DISPLAY "No records found"
+        ELSE
+            FOR EACH student IN students:
+                DISPLAY student details
+            END FOR
+        ENDIF
+
+    ELSE IF choice = "3" THEN
+        INPUT student_id
+        SET found = false
+
+        FOR EACH student IN students:
+            IF student_id matches THEN
+                DISPLAY student details
+                SET found = true
+                BREAK LOOP
+            ENDIF
+        END FOR
+
+        IF found = false THEN
+            DISPLAY "Student not found"
+        ENDIF
+
+    ELSE IF choice = "4" THEN
+        INPUT student_id
+
+        FOR EACH student IN students:
+            IF student_id matches THEN
+                REMOVE student from students list
+                REMOVE student_id from student_ids set
+                DISPLAY "Student deleted successfully"
+                BREAK LOOP
+            ENDIF
+        END FOR
+
+        IF student not found THEN
+            DISPLAY "Student not found"
+        ENDIF
+
+    ELSE IF choice = "5" THEN
+        DISPLAY "Exiting program"
+        EXIT LOOP
+
+    ELSE
+        DISPLAY "Invalid choice"
+
+END LOOP
+
+END
