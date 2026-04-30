@@ -8,7 +8,12 @@ answer=[
     "5",
     "kathmandu"
 ]
+score=0
+
 def quiz(question,answer):
     for i in range(len(question)):
         q=input(question[i])
-        if q==answer[i]
+        if q==answer[i]:
+            score=score+1
+            
+
